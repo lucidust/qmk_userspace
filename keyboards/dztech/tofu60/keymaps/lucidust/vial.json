@@ -9,11 +9,31 @@
   },
   "layouts": {
     "labels": [
-      ["Backspace", "Default", "Split"],
-      ["Enter Key", "ANSI", "ISO"],
-      ["Left Shift", "Default", "Split"],
-      ["Spacebar", "Standard", "7u"],
-      ["Right Shift", "Default", "Split"]
+      [
+        "Backspace",
+        "Default",
+        "Split"
+      ],
+      [
+        "Enter Key",
+        "ANSI",
+        "ISO"
+      ],
+      [
+        "Left Shift",
+        "Default",
+        "Split"
+      ],
+      [
+        "Spacebar",
+        "Standard",
+        "7u"
+      ],
+      [
+        "Right Shift",
+        "Default",
+        "Split"
+      ]
     ],
     "keymap": [
       [
