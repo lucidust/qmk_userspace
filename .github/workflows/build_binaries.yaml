@@ -15,6 +15,37 @@ jobs:
 
   publish:
     name: 'QMK Userspace Publish'
-    uses: qmk/.github/.github/workflows/qmk_userspace_publish.yml@main
     if: always() && !cancelled()
     needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-tags: true
+
+      - name: Download binaries
+        if: always() && !cancelled()
+        uses: actions/download-artifact@v8
+        with:
+          name: Firmware
+
+      - name: Delete release
+        run: gh release delete latest --cleanup-tag || true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Generate Release
+        uses: softprops/action-gh-release@v3.0.0
+        if: always() && !cancelled()
+        with:
+          token: ${{ github.token }}
+          name: Latest QMK Firmware
+          tag_name: latest
+          fail_on_unmatched_files: false
+          draft: false
+          prerelease: false
+          files: |
+            **/*.hex
+            **/*.bin
+            **/*.uf2
