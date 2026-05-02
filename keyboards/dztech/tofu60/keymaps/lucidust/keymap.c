@@ -2,20 +2,77 @@
 
 /* Key Combos */
 enum combos {
-    WE_ESC
+    WE_ESC,
+    SD_TAB,
+    UI_BSPC,
+    IO_DEL,
+    JK_LPRN,
+    KL_RPRN,
+    MCOMM_LBRC,
+    COMMDOT_RBRC,
+    MDOT_RALT,
+    XC_COPY,
+    CV_PASTE,
+    XV_CUT
 };
 
 const uint16_t PROGMEM we_combo[] = {KC_W, KC_E, COMBO_END};
+const uint16_t PROGMEM sd_combo[] = {KC_S, KC_D, COMBO_END};
+const uint16_t PROGMEM ui_combo[] = {KC_U, KC_I, COMBO_END};
+const uint16_t PROGMEM io_combo[] = {KC_I, KC_O, COMBO_END};
+const uint16_t PROGMEM jk_combo[] = {KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM kl_combo[] = {KC_K, KC_L, COMBO_END};
+const uint16_t PROGMEM mcomm_combo[] = {KC_M, KC_COMM, COMBO_END};
+const uint16_t PROGMEM commdot_combo[] = {KC_COMM, KC_DOT, COMBO_END};
+const uint16_t PROGMEM mdot_combo[] = {KC_M, KC_DOT, COMBO_END};
+const uint16_t PROGMEM xc_combo[] = {KC_X, KC_C, COMBO_END};
+const uint16_t PROGMEM cv_combo[] = {KC_C, KC_V, COMBO_END};
+const uint16_t PROGMEM xv_combo[] = {KC_X, KC_V, COMBO_END};
 
 combo_t key_combos[] = {
-    [WE_ESC] = COMBO(we_combo, KC_ESC),
+    [WE_ESC]       = COMBO(we_combo, KC_ESC),
+    [SD_TAB]       = COMBO(sd_combo, KC_TAB),
+    [UI_BSPC]      = COMBO(ui_combo, KC_BSPC),
+    [IO_DEL]       = COMBO(io_combo, KC_DEL),
+    [JK_LPRN]      = COMBO(jk_combo, KC_NO),
+    [KL_RPRN]      = COMBO(kl_combo, KC_NO),
+    [MCOMM_LBRC]   = COMBO(mcomm_combo, KC_LBRC),
+    [COMMDOT_RBRC] = COMBO(commdot_combo, KC_RBRC),
+    [MDOT_RALT]    = COMBO(mdot_combo, KC_RALT),
+    [XC_COPY]      = COMBO(xc_combo, C(KC_C)),
+    [CV_PASTE]     = COMBO(cv_combo, C(KC_V)),
+    [XV_CUT]       = COMBO(xv_combo, C(KC_X)),
 };
+
+void process_combo_event(uint16_t combo_index, bool pressed) {
+    if (!pressed) {
+        return;
+    }
+
+    const uint8_t mods = get_mods() | get_oneshot_mods();
+    const bool    shifted = mods & MOD_MASK_SHIFT;
+
+    switch (combo_index) {
+        case JK_LPRN:
+            tap_code16(shifted ? KC_LT : KC_LPRN);
+            break;
+        case KL_RPRN:
+            tap_code16(shifted ? KC_GT : KC_RPRN);
+            break;
+    }
+}
 
 /* Tap Dance */
 // tap_dance_action_t tap_dance_actions[] = {};
 
 /* Key Overrides */
-// const key_override_t *key_overrides[] = {};
+const key_override_t comma_semicolon_override = ko_make_basic(MOD_MASK_SHIFT, KC_COMM, KC_SCLN);
+const key_override_t dot_colon_override       = ko_make_basic(MOD_MASK_SHIFT, KC_DOT, KC_COLN);
+
+const key_override_t *key_overrides[] = {
+    &comma_semicolon_override,
+    &dot_colon_override,
+};
 
 /* Keymaps */
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -31,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_CAPS, KC_LEFT, KC_UP,   KC_DOWN, KC_RGHT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_PSCR, KC_SCRL, KC_PAUS, KC_TRNS,
         KC_TRNS, KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_TRNS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_INS,  KC_DEL,           KC_TRNS,
         KC_TRNS, KC_NO,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_TRNS, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_TRNS, KC_TRNS, KC_TRNS,
-        KC_TRNS, KC_TRNS, KC_TRNS,                                     KC_SPC,                    KC_TRNS, QK_RBT,  QK_BOOT, DF(2)
+        KC_TRNS, KC_TRNS, KC_TRNS,                                     KC_SPC,                    KC_TRNS, QK_RBT,  QK_BOOT, KC_TRNS
     ),
     [2] = LAYOUT_all(
         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
