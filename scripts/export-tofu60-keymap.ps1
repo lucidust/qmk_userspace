@@ -2,7 +2,7 @@ param(
     [string]$OutputDir = "",
     [string]$Keyboard = "dztech/tofu60",
     [string]$Keymap = "lucidust",
-    [string]$Layout = "LAYOUT_all",
+    [string]$Layout = "LAYOUT_60_ansi_split_bs_rshift",
     [string[]]$LayerNames = @("Base", "Nav", "Sym", "Fn", "Num", "Boot"),
     [int]$Columns = 0
 )
@@ -76,6 +76,8 @@ function Write-ComboYaml {
     )
 
     $source = Get-Content -Raw $KeymapPath
+    $source = [regex]::Replace($source, "(?s)/\*.*?\*/", "")
+    $source = [regex]::Replace($source, "(?m)//.*$", "")
     $keymapJson = Get-Content -Raw $JsonPath | ConvertFrom-Json
     $baseLayer = @($keymapJson.layers[0])
 

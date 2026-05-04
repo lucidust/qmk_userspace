@@ -1,0 +1,41 @@
+﻿combos:
+  - p: [17, 18]
+    k: 'ESC'
+    l: [Base]
+    a: top
+  - p: [31, 32]
+    k: 'TAB'
+    l: [Base]
+    a: top
+  - p: [22, 23]
+    k: 'BSPC'
+    l: [Base]
+    a: top
+  - p: [23, 24]
+    k: 'DEL'
+    l: [Base]
+    a: top
+  - p: [36, 38]
+    k: 'RALT'
+    l: [Base]
+    a: top
+  - p: [44, 45]
+    k: 'Copy'
+    l: [Base]
+    a: top
+  - p: [45, 46]
+    k: 'Paste'
+    l: [Base]
+    a: top
+  - p: [44, 46]
+    k: 'Cut'
+    l: [Base]
+    a: top
+  - p: [22, 24]
+    k: 'ENT'
+    l: [Base]
+    a: top
+  - p: [17, 19]
+    k: 'SPC'
+    l: [Base]
+    a: top

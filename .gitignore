@@ -16,4 +16,7 @@ compile_commands.json
 .cache/
 
 # Generated local artifacts
-build/
+build/*
+!build/keymap-drawer/
+!build/keymap-drawer/**
+build/keymap-drawer/*.bak
