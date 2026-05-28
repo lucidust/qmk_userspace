@@ -3,7 +3,7 @@
     k: 'ESC'
     l: [Base]
     a: top
-  - p: [31, 32]
+  - p: [18, 19]
     k: 'TAB'
     l: [Base]
     a: top
@@ -15,7 +15,7 @@
     k: 'DEL'
     l: [Base]
     a: top
-  - p: [36, 38]
+  - p: [49, 51]
     k: 'RALT'
     l: [Base]
     a: top

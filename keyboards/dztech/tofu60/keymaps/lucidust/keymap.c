@@ -3,10 +3,10 @@
 /* Key Combos */
 enum combos {
     WE_ESC,
-    SD_TAB,
+    ER_TAB,
     UI_BSPC,
     IO_DEL,
-    JL_RALT,
+    M_DOT_RALT,
     XC_COPY,
     CV_PASTE,
     XV_CUT,
@@ -15,10 +15,10 @@ enum combos {
 };
 
 const uint16_t PROGMEM we_combo[] = {KC_W, KC_E, COMBO_END};
-const uint16_t PROGMEM sd_combo[] = {KC_S, KC_D, COMBO_END};
+const uint16_t PROGMEM er_combo[] = {KC_E, KC_R, COMBO_END};
 const uint16_t PROGMEM ui_combo[] = {KC_U, KC_I, COMBO_END};
 const uint16_t PROGMEM io_combo[] = {KC_I, KC_O, COMBO_END};
-const uint16_t PROGMEM jl_combo[] = {KC_J, KC_L, COMBO_END};
+const uint16_t PROGMEM m_dot_combo[] = {KC_M, KC_DOT, COMBO_END};
 const uint16_t PROGMEM xc_combo[] = {KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM cv_combo[] = {KC_C, KC_V, COMBO_END};
 const uint16_t PROGMEM xv_combo[] = {KC_X, KC_V, COMBO_END};
@@ -27,10 +27,10 @@ const uint16_t PROGMEM wr_combo[] = {KC_W, KC_R, COMBO_END};
 
 combo_t key_combos[] = {
     [WE_ESC]       = COMBO(we_combo, KC_ESC),
-    [SD_TAB]       = COMBO(sd_combo, KC_TAB),
+    [ER_TAB]       = COMBO(er_combo, KC_TAB),
     [UI_BSPC]      = COMBO(ui_combo, KC_BSPC),
     [IO_DEL]       = COMBO(io_combo, KC_DEL),
-    [JL_RALT]      = COMBO(jl_combo, KC_RALT),
+    [M_DOT_RALT]   = COMBO(m_dot_combo, KC_RALT),
     [XC_COPY]      = COMBO(xc_combo, C(KC_C)),
     [CV_PASTE]     = COMBO(cv_combo, C(KC_V)),
     [XV_CUT]       = COMBO(xv_combo, C(KC_X)),
